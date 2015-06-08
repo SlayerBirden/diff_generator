@@ -19,5 +19,8 @@
         "psr-4": {
             "SlayerBirden\\": ["src/", "tests/"]
         }
-    }
+    },
+    "bin": [
+        "bin/diff_generator.php"
+    ]
 }
