@@ -1,2 +1,10 @@
 # diff_generator
-a tool to generate diff files
+A tool to generate diff files for Magento Composer Installer
+## installation
+```
+composer require slayerbirden/diff_generator:
+```
+## usage
+```
+php vendor/
+```

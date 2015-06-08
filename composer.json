@@ -1,0 +1,23 @@
+{
+    "name": "slayerbirden/diff_generator",
+    "description": "A tool to generate diff files",
+    "authors": [
+        {
+            "name": "Oleg",
+            "email": "olegkulik1985@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "symfony/console": "~2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4",
+        "mikey179/vfsstream": "~1"
+    },
+    "autoload": {
+        "psr-4": {
+            "SlayerBirden\\": ["src/", "tests/"]
+        }
+    }
+}
