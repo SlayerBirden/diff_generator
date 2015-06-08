@@ -22,6 +22,7 @@ class DirectoryParser implements ParserInterface
             if (strpos($fileName, $input) === 0) {
                 $fileName = str_replace($input, '', $fileName);
             }
+            $fileName = ltrim($fileName, DIRECTORY_SEPARATOR);
             $directives[] = ['add', $fileName, $fileName];
         }
         return $directives;
