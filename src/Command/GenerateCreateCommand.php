@@ -47,12 +47,15 @@ class GenerateCreateCommand extends Command
         if ($ignores = $input->getArgument('ignores')) {
             $ignores = explode(',', $ignores);
             foreach ($ignores as $ignore) {
-                if (($key = array_search($ignore, $files)) !== false) {
+                if (($key = array_search($ignore, array_map(function ($row) {
+                        return $row[2];
+                    }, $files))) !== false) {
                     unset($files[$key]);
                 }
             }
         }
         $dumper = new FileDumper($input->getArgument('directives'));
         $dumper->dump($files);
+        $output->writeln('<info>Directives are dumped successfully!</info>');
     }
 }
