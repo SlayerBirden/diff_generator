@@ -4,6 +4,7 @@ namespace SlayerBirden\Command;
 
 use SlayerBirden\Dumper\FileDumper;
 use SlayerBirden\Parser\DirectoryParser;
+use SlayerBirden\Util\Filter;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -46,13 +47,8 @@ class GenerateCreateCommand extends Command
         $files = $parser->parse($input->getArgument('folder'));
         if ($ignores = $input->getArgument('ignores')) {
             $ignores = explode(',', $ignores);
-            foreach ($ignores as $ignore) {
-                if (($key = array_search($ignore, array_map(function ($row) {
-                        return $row[2];
-                    }, $files))) !== false) {
-                    unset($files[$key]);
-                }
-            }
+            $filter = new Filter();
+            $files = $filter->getFiltered($files, $ignores);
         }
         $dumper = new FileDumper($input->getArgument('directives'));
         $dumper->dump($files);
