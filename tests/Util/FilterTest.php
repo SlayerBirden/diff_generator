@@ -46,6 +46,18 @@ class FilterTest extends \PHPUnit_Framework_TestCase
                     ['add', 'index', 'index'],
                 ]
             ],
+            [
+                [
+                    ['add', 'app/code/file1', 'app/code/file1'],
+                    ['add', 'app/js/file1.sample', 'app/js/file1.sample'],
+                    ['add', 'index', 'index'],
+                ],
+                ['*/file1'],
+                [
+                    ['add', 'app/js/file1.sample', 'app/js/file1.sample'],
+                    ['add', 'index', 'index'],
+                ]
+            ],
         ];
     }
 }

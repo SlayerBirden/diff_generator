@@ -25,8 +25,15 @@ class Filter
         foreach ($ignores as $ignore) {
             $i = 0;
             foreach ($files as $file) {
-                $pattern = '#' . preg_quote($ignore, '#') . '#';
-                $pattern = str_replace('\*', '.*', $pattern);
+                if (substr($ignore, 0, 1) === '*') {
+                    // first char's wildcard
+                    $pattern = '#.*' . preg_quote(substr($ignore, 1), '#') . '$#';
+                } elseif (substr($ignore, -1) === '*') {
+                    // last char's wildcard
+                    $pattern = '#^' . preg_quote(substr($ignore, 0, -1), '#') . '.*#';
+                } else {
+                    $pattern = '#^' . preg_quote($ignore, '#') . '$#';
+                }
                 if (preg_match($pattern, $file)) {
                     unset($directives[$i]);
                 }
